@@ -2,7 +2,7 @@ package com.lcodecore.twinklingrefreshlayout;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -31,8 +31,8 @@ public class WebActivity extends AppCompatActivity {
         refreshLayout.setMaxHeadHeight(240);
         refreshLayout.setOverScrollHeight(200);
         refreshLayout.setEnableLoadmore(false);
-        header.setColorSchemeResources(R.color.Blue, R.color.Orange, R.color.Yellow, R.color.Green);
-//        header.setColorSchemeColors(0xff4674e7,0xff0ba62c);
+        // library defines these colors but to avoid resource resolution issues use explicit color ints
+        header.setColorSchemeColors(0xff4674e7, 0xffe75946, 0xfff4d227, 0xff0ba62c);
 
         mWebView = (WebView) findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);

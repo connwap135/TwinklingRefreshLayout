@@ -4,12 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
 
-import com.github.moduth.blockcanary.BlockCanary;
-import com.github.moduth.blockcanary.BlockCanaryContext;
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
-import com.lcodecore.tkrefreshlayout.footer.BallPulseView;
-import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
-import com.squareup.leakcanary.LeakCanary;
+// removed BlockCanary and LeakCanary imports; these debug tools are optional
 
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.GINGERBREAD;
@@ -28,30 +23,31 @@ public class TkApplication extends Application {
 
         appContext = this;
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-        enabledStrictMode();
-        LeakCanary.install(this);
-
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDeath().build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
-
-        BlockCanary.install(this,new AppBlockCanaryContext()).start();
+        // Enable StrictMode in debug builds but avoid crashing the process (penaltyDeath)
+        // because some OEM/system components on certain devices perform disk I/O
+        // on the main thread (MIUI/Mediatek) which would otherwise kill the app.
+        // Use penaltyLog so violations are reported but do not crash the app.
+        // Use penaltyLog so violations are reported but the process isn't killed.
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build());
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build());
 
 //        TwinklingRefreshLayout.setDefaultHeader(SinaRefreshView.class.getName());
 //        TwinklingRefreshLayout.setDefaultFooter(BallPulseView.class.getName());
     }
 
-    private class AppBlockCanaryContext extends BlockCanaryContext{}
+    // BlockCanary context removed
 
     private void enabledStrictMode() {
-        if (SDK_INT >= GINGERBREAD) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
-                    .detectAll() //
-                    .penaltyLog() //
-                    .penaltyDeath() //
-                    .build());
-        }
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
+                .detectAll() //
+                .penaltyLog() //
+                .penaltyDeath() //
+                .build());
     }
 }

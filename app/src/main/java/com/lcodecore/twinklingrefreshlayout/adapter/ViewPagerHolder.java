@@ -1,7 +1,7 @@
 package com.lcodecore.twinklingrefreshlayout.adapter;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -14,20 +14,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
-
 public class ViewPagerHolder extends CommonHolder<Void> {
     private LoopViewPagerAdapter viewPagerAdapter;
     private List<Card> cards = new ArrayList<>();
 
-    @Bind(R.id.viewPager)
     ViewPager viewPager;
-
-    @Bind(R.id.indicators)
     LinearLayout indicators;
 
     public ViewPagerHolder(Context context, ViewGroup root) {
         super(context, root, R.layout.layout_viewpager);
+        // manual view binding
+        viewPager = itemView.findViewById(R.id.viewPager);
+        indicators = itemView.findViewById(R.id.indicators);
 
 //        cards.add(new Card("二次元专题", "啊喂，别总想去四维空间啦",R.drawable.card_cover6));
 //        cards.add(new Card("Music Player", "闻其名，余音绕梁",R.drawable.card_cover7));

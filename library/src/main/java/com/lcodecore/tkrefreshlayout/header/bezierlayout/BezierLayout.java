@@ -4,12 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 import com.lcodecore.tkrefreshlayout.OnAnimEndListener;
 import com.lcodecore.tkrefreshlayout.R;
@@ -40,18 +42,18 @@ public class BezierLayout extends FrameLayout implements IHeaderView {
     RoundProgressView r2;
 
     private void init(AttributeSet attrs) {
-        /**
-         * attrs  需要在xml设置什么属性  自己自定义吧  啊哈哈
+        /*
+          attrs  需要在xml设置什么属性  自己自定义吧  啊哈哈
          */
 
-        /**
-         * 初始化headView
+        /*
+          初始化headView
          */
         headView = LayoutInflater.from(getContext()).inflate(R.layout.view_bezier, null);
-        waveView = (WaveView) headView.findViewById(R.id.draweeView);
-        rippleView = (RippleView) headView.findViewById(R.id.ripple);
-        r1 = (RoundDotView) headView.findViewById(R.id.round1);
-        r2 = (RoundProgressView) headView.findViewById(R.id.round2);
+        waveView = headView.findViewById(R.id.draweeView);
+        rippleView = headView.findViewById(R.id.ripple);
+        r1 = headView.findViewById(R.id.round1);
+        r2 = headView.findViewById(R.id.round2);
         r2.setVisibility(View.GONE);
 
         addView(headView);
@@ -68,9 +70,6 @@ public class BezierLayout extends FrameLayout implements IHeaderView {
     /**
      * 限定值
      *
-     * @param a
-     * @param b
-     * @return
      */
     public float limitValue(float a, float b) {
         float valve = 0;
@@ -128,7 +127,7 @@ public class BezierLayout extends FrameLayout implements IHeaderView {
         waveAnimator = ValueAnimator.ofInt(waveView.getWaveHeight(), 0, -300, 0, -100, 0);
         waveAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                 waveView.setWaveHeight((int) animation.getAnimatedValue() / 2);
                 waveView.invalidate();
 
@@ -158,7 +157,7 @@ public class BezierLayout extends FrameLayout implements IHeaderView {
 
         circleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                 float value = (float) animation.getAnimatedValue();
                 r1.setCir_x((int) (-value * 40));
                 r1.invalidate();

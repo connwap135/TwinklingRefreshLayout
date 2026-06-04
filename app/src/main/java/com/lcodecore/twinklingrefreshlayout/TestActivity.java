@@ -2,7 +2,7 @@ package com.lcodecore.twinklingrefreshlayout;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -102,50 +102,40 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.toggle_enableLoadmore:
-                toggle_enableLoadmore.toggle();
-                refreshLayout.setEnableLoadmore(toggle_enableLoadmore.flag);
-                break;
-            case R.id.toggle_pureScrollMode_on:
-                toggle_pureScrollMode_on.toggle();
-                refreshLayout.setPureScrollModeOn();
-                break;
-            case R.id.toggle_overScrollTopShow:
-                toggle_overScrollTopShow.toggle();
-                refreshLayout.setOverScrollTopShow(toggle_overScrollTopShow.flag);
-                break;
-            case R.id.toggle_osFooterShow:
-                toggle_osFooterShow.toggle();
-                refreshLayout.setOverScrollBottomShow(toggle_osFooterShow.flag);
-                break;
-            case R.id.toggle_enableOverScroll:
-                toggle_enableOverScroll.toggle();
-                refreshLayout.setEnableOverScroll(toggle_enableOverScroll.flag);
-                break;
-            case R.id.toggle_enableKeepIView:
-                toggle_enableKeepIView.toggle();
-                refreshLayout.setEnableKeepIView(toggle_enableKeepIView.flag);
-                break;
-            case R.id.toggle_showRefreshingWhenOverScroll:
-                toggle_showRefreshingWhenOverScroll.toggle();
-                refreshLayout.showRefreshingWhenOverScroll(toggle_showRefreshingWhenOverScroll.flag);
-                break;
-            case R.id.toggle_showLoadingWhenOverScroll:
-                toggle_showLoadingWhenOverScroll.toggle();
-                refreshLayout.showLoadingWhenOverScroll(toggle_showLoadingWhenOverScroll.flag);
-                break;
-            case R.id.toggle_floatRefresh:
-                toggle_floatRefresh.toggle();
-                refreshLayout.setFloatRefresh(toggle_floatRefresh.flag);
-                break;
-            case R.id.toggle_autoLoadMore:
-                toggle_autoLoadMore.toggle();
-                refreshLayout.setAutoLoadMore(toggle_autoLoadMore.flag);
-                break;
-            case R.id.toggle_enableRefresh:
-                toggle_enableRefresh.toggle();
-                refreshLayout.setEnableRefresh(toggle_enableRefresh.flag);
+        int id = v.getId();
+        if (id == R.id.toggle_enableLoadmore) {
+            toggle_enableLoadmore.toggle();
+            refreshLayout.setEnableLoadmore(toggle_enableLoadmore.flag);
+        } else if (id == R.id.toggle_pureScrollMode_on) {
+            toggle_pureScrollMode_on.toggle();
+            refreshLayout.setPureScrollModeOn();
+        } else if (id == R.id.toggle_overScrollTopShow) {
+            toggle_overScrollTopShow.toggle();
+            refreshLayout.setOverScrollTopShow(toggle_overScrollTopShow.flag);
+        } else if (id == R.id.toggle_osFooterShow) {
+            toggle_osFooterShow.toggle();
+            refreshLayout.setOverScrollBottomShow(toggle_osFooterShow.flag);
+        } else if (id == R.id.toggle_enableOverScroll) {
+            toggle_enableOverScroll.toggle();
+            refreshLayout.setEnableOverScroll(toggle_enableOverScroll.flag);
+        } else if (id == R.id.toggle_enableKeepIView) {
+            toggle_enableKeepIView.toggle();
+            refreshLayout.setEnableKeepIView(toggle_enableKeepIView.flag);
+        } else if (id == R.id.toggle_showRefreshingWhenOverScroll) {
+            toggle_showRefreshingWhenOverScroll.toggle();
+            refreshLayout.showRefreshingWhenOverScroll(toggle_showRefreshingWhenOverScroll.flag);
+        } else if (id == R.id.toggle_showLoadingWhenOverScroll) {
+            toggle_showLoadingWhenOverScroll.toggle();
+            refreshLayout.showLoadingWhenOverScroll(toggle_showLoadingWhenOverScroll.flag);
+        } else if (id == R.id.toggle_floatRefresh) {
+            toggle_floatRefresh.toggle();
+            refreshLayout.setFloatRefresh(toggle_floatRefresh.flag);
+        } else if (id == R.id.toggle_autoLoadMore) {
+            toggle_autoLoadMore.toggle();
+            refreshLayout.setAutoLoadMore(toggle_autoLoadMore.flag);
+        } else if (id == R.id.toggle_enableRefresh) {
+            toggle_enableRefresh.toggle();
+            refreshLayout.setEnableRefresh(toggle_enableRefresh.flag);
         }
     }
 

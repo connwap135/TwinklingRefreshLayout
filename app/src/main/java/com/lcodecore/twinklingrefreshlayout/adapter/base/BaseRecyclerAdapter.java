@@ -3,9 +3,10 @@ package com.lcodecore.twinklingrefreshlayout.adapter.base;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -14,7 +15,6 @@ import com.lcodecore.twinklingrefreshlayout.utils.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import butterknife.ButterKnife;
 /**
  * RecyclerView适配器基类
  */
@@ -25,8 +25,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     ViewGroup rootView;
     public final static int TYPE_HEAD = 0;
     public static final int TYPE_CONTENT = 1;
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int position) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
         rootView = parent;
         //设置ViewHolder
         int type = getItemViewType(position);

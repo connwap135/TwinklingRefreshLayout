@@ -1,19 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    compileSdk 37
+    namespace 'com.lcodecore.twinklingrefreshlayout'
     defaultConfig {
         applicationId 'com.lcodecore.twinklingrefreshlayout'
-        minSdkVersion 14
-        targetSdkVersion 22
+        minSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     productFlavors {
@@ -24,12 +23,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:design:25.2.0'
-    compile project(':library')
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:cardview-v7:25.2.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    compile 'com.github.moduth:blockcanary-android:1.2.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // migrated to AndroidX / Material
+    implementation libs.material
+    implementation project(':library')
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.cardview
+    // removed ButterKnife library and annotation processor - view binding is done manually
+    implementation libs.leakcanary.android
+    // blockcanary is optional and pulls an analyzer dependency that isn't available in configured repos.
+    // Commented out to avoid resolution errors. Re-add a compatible version or provide repository if needed.
+    // implementation 'com.github.moduth:blockcanary-android:1.3.1'
 }

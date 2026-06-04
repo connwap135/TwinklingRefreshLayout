@@ -12,7 +12,7 @@ import com.lcodecore.twinklingrefreshlayout.adapter.base.CommonHolder;
 import com.lcodecore.twinklingrefreshlayout.beans.Photo;
 import com.lcodecore.twinklingrefreshlayout.utils.ToastUtil;
 
-import butterknife.Bind;
+// ...existing code... (removed ButterKnife)
 
 /**
  * Created by lcodecore on 2016/12/7.
@@ -26,14 +26,14 @@ public class PhotoAdapter extends BaseRecyclerAdapter<Photo> {
 
     class CardHolder extends CommonHolder<Photo> {
 
-        @Bind(R.id.tv_info)
         TextView tv_info;
-
-        @Bind(R.id.iv_pic)
         ImageView iv_pic;
 
         public CardHolder(Context context, ViewGroup root) {
             super(context, root, R.layout.item_photo);
+            // manual view binding
+            tv_info = itemView.findViewById(R.id.tv_info);
+            iv_pic = itemView.findViewById(R.id.iv_pic);
         }
 
         @Override

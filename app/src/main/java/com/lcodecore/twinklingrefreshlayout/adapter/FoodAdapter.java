@@ -13,7 +13,7 @@ import com.lcodecore.twinklingrefreshlayout.beans.Food;
 import com.lcodecore.twinklingrefreshlayout.utils.ToastUtil;
 import com.lcodecore.twinklingrefreshlayout.views.CircleImageView;
 
-import butterknife.Bind;
+// ...existing code... (removed ButterKnife)
 
 /**
  * Created by lcodecore on 2016/12/6.
@@ -27,20 +27,18 @@ public class FoodAdapter extends BaseRecyclerAdapter<Food> {
 
     class CardHolder extends CommonHolder<Food> {
 
-        @Bind(R.id.avatar)
         CircleImageView avatar;
-
-        @Bind(R.id.tv_food)
         TextView tv_food;
-
-        @Bind(R.id.tv_info)
         TextView tv_info;
-
-        @Bind(R.id.iv_food)
         ImageView iv_food;
 
         public CardHolder(Context context, ViewGroup root) {
             super(context, root, R.layout.item_food);
+            // manual view binding instead of ButterKnife
+            avatar = itemView.findViewById(R.id.avatar);
+            tv_food = itemView.findViewById(R.id.tv_food);
+            tv_info = itemView.findViewById(R.id.tv_info);
+            iv_food = itemView.findViewById(R.id.iv_food);
         }
 
         @Override

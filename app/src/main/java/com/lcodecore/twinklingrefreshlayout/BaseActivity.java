@@ -1,10 +1,11 @@
 package com.lcodecore.twinklingrefreshlayout;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
+import android.os.StrictMode;
 
 /**
  * Created by lcodecore on 16/3/2.
@@ -14,7 +15,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(setInflateId());
+        // Some OEM system components (MIUI/Mediatek modules) may perform disk reads
+        // during layout inflation which can trigger StrictMode DiskReadViolation on
+        // devices with strict policies. Temporarily allow disk reads for setContentView
+        // and restore the previous policy immediately after.
+        StrictMode.ThreadPolicy _oldPolicy = StrictMode.allowThreadDiskReads();
+        try {
+            setContentView(setInflateId());
+        } finally {
+            StrictMode.setThreadPolicy(_oldPolicy);
+        }
+
         init();
         initAcition();
     }
