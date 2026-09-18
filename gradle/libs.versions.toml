@@ -1,0 +1,21 @@
+[versions]
+appcompat = "1.8.0"
+cardview = "1.0.0"
+gradle = "9.4.0"
+gradleToolchainsFoojayResolverConvention = "1.0.0"
+leakcanaryAndroid = "2.14"
+legacySupportV4 = "1.0.0"
+material = "1.14.0"
+recyclerview = "1.4.0"
+
+[libraries]
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
+androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
+leakcanary-android = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanaryAndroid" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+[plugins]
+gradle-toolchains-foojay-resolver-convention = { id = "org.gradle.toolchains.foojay-resolver-convention", version.ref = "gradleToolchainsFoojayResolverConvention" }
