@@ -1,7 +1,7 @@
 [versions]
 appcompat = "1.8.0"
 cardview = "1.0.0"
-gradle = "9.4.0"
+gradle = "9.5.1"
 gradleToolchainsFoojayResolverConvention = "1.0.0"
 leakcanaryAndroid = "2.14"
 legacySupportV4 = "1.0.0"
